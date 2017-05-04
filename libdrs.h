@@ -24,7 +24,7 @@ extern "C" {
 	LIBDRS_API int drs_getFirmwareVersion(void* drs);
 	LIBDRS_API int drs_getBoardSerialNumber(void* drs);
 	LIBDRS_API int drs_init(void* drs);
-    LIBDRS_API int drs_setFrequency(void* drs,int freq, bool wait);
+    LIBDRS_API int drs_setFrequency(void* drs,double freq, bool wait);
     LIBDRS_API double drs_getNominalFrequency(void* drs);
     LIBDRS_API double drs_getTrueFrequency(void* drs);
     LIBDRS_API int drs_setTranspMode(void* drs,int flg);
@@ -50,6 +50,22 @@ extern "C" {
 	LIBDRS_API int drs_getTime(void* drs,unsigned int chipIndex, int channelIndex, int tc, float *time, bool tcalibrated, bool rotated);
 	LIBDRS_API int drs_getTime2(void* drs, int channelIndex,float *time);
 	LIBDRS_API int drs_getWave(void* drs,unsigned int chipIndex, unsigned char channel, float *waveform);
+
+	LIBDRS_API int drs_softTrigger(void* drs);
+	LIBDRS_API bool drs_isTimingCalibrationValid(void* drs);
+	LIBDRS_API void drs_setNumberOfChannels(void* drs,
+						int nChannels);
+	LIBDRS_API int drs_getDRSType(void* drs);
+	LIBDRS_API int drs_getNumberOfChannels(void* drs);
+	LIBDRS_API int drs_getChannelDepth(void* drs);
+	LIBDRS_API int drs_getNumberOfInputs(void* drs);
+	LIBDRS_API int drs_getNumberOfCalibInputs(void* drs);
+	LIBDRS_API int drs_setDelayedTrigger(void* drs, bool val);
+	LIBDRS_API int drs_setReadoutMode(void* drs, bool val);
+	LIBDRS_API int drs_getRefclk(void* drs);
+	LIBDRS_API int drs_getTcalFreq(void* drs);
+	LIBDRS_API unsigned int drs_getScaler(void* drs, int channel);
+	LIBDRS_API int drs_isEventAvailable(void* drs);
 #ifdef __cplusplus
 }
 #endif

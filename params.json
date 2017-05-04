@@ -1,0 +1,1 @@
+{"freq_GHz": 0.7, "isTransparent": true, "TrigDelay_ns": 1500, "isRandomTriggers": false, "RangeCentre_V": 0.0, "isNegTrigPolarity": true, "isExtTrig": false, "isDominoDuringReadout": false, "TrigSource_AND": [false, false, false, false], "TrigLevels_V": [-0.1, -0.1, -0.1, -0.1], "TrigSource_OR": [false, true, false, false]}

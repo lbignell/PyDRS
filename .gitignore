@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+
+#others
+*.h5
+*.txt
+

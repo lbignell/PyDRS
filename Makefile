@@ -8,7 +8,7 @@
 ########################################################
 
 OS           = OS_LINUX
-DRS_DIR      = /home/user/workspace/PyDRS.lin/drs-5.0.3
+DRS_DIR      = /home/pi/Downloads/drs-5.0.6
 INCDIR       = $(DRS_DIR)/include
 SRCDIR       = $(DRS_DIR)/src
 

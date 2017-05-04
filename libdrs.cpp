@@ -57,7 +57,7 @@ void* drs_getBoard(void* drs, int i){
 int drs_init(void* drs){
     return (((DRS*)drs)->GetBoard(0))->Init();
 }
-int drs_setFrequency(void* drs,int freq, bool wait){
+int drs_setFrequency(void* drs,double freq, bool wait){
     return (((DRS*)drs)->GetBoard(0))->SetFrequency(freq,wait);
 }
 double drs_getNominalFrequency(void* drs){
@@ -70,6 +70,7 @@ int drs_setTranspMode(void* drs,int flg){
     return (((DRS*)drs)->GetBoard(0))->SetTranspMode(flg);
 }
 int drs_setInputRange(void* drs,double center){
+    //Note: value must be 0<center<0.5.
     return (((DRS*)drs)->GetBoard(0))->SetInputRange(center);
 }
 double drs_getInputRange(void* drs){
@@ -135,3 +136,71 @@ int drs_getTime2(void* drs, int channelIndex,float *time){
 int drs_getWave(void* drs,unsigned int chipIndex, unsigned char channel, float *waveform){
     return (((DRS*)drs)->GetBoard(0))->GetWave(chipIndex, channel, waveform);
 }
+
+//Additions made by lbignell
+int drs_softTrigger(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->SoftTrigger();
+}
+
+bool drs_isTimingCalibrationValid(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->
+		IsTimingCalibrationValid();
+}
+
+// SetNumberOfChannels gives invalid results when
+// fDRSType == 4!
+//void drs_setNumberOfChannels(void* drs, int nChannels){
+//	return ((DRS*)drs)->GetBoard(0)->
+//		SetNumberOfChannels(nChannels);
+//}
+
+int drs_getDRSType(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->GetDRSType();
+}
+
+int drs_getNumberOfChannels(void* drs){
+	//Note that this returns the # of DRS channels active,
+	//so it should be 2*(# active inputs) + 1 (the extra
+	//channel is used to get the time).
+	return ((DRS*)drs)->GetBoard(0)->GetNumberOfChannels();
+}
+
+int drs_getChannelDepth(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->GetChannelDepth();
+}
+
+int drs_getNumberOfInputs(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->GetNumberOfInputs();
+}
+
+int drs_getNumberOfCalibInputs(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->GetNumberOfCalibInputs();
+}
+
+int drs_setDelayedTrigger(void* drs, bool val){
+	return ((DRS*)drs)->GetBoard(0)->SetDelayedTrigger(val);
+}
+
+int drs_setReadoutMode(void* drs, bool val){
+	// Set readout mode
+	// mode == 0: start from first bin
+	// mode == 1: start from domino stop
+	return ((DRS*)drs)->GetBoard(0)->SetReadoutMode(val);
+}
+
+int drs_getRefclk(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->GetRefclk();
+}
+
+int drs_getTcalFreq(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->GetTcalFreq();
+}
+
+unsigned int drs_getScaler(void* drs, int channel){
+	return ((DRS*)drs)->GetBoard(0)->GetScaler(channel);
+}
+
+int drs_isEventAvailable(void* drs){
+	return ((DRS*)drs)->GetBoard(0)->IsEventAvailable();
+}
+
