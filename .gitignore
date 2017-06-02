@@ -31,4 +31,8 @@
 #others
 *.h5
 *.txt
+*.swp
+*.png
+*.svg
+*.ini
 

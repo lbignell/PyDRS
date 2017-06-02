@@ -25,17 +25,20 @@ if __name__ == "__main__":
     par, child = Pipe()
     isrunning = False
     while not exit:
-        print("To acquire N waveforms, just type the number. To exit, type e, to stop a run, type s")
+        print("To acquire N waveforms, just type the number (-1 for infinite). To exit, type e, to stop a run, type s")
         ret = raw_input()
         try:
             nevents = int(ret)
             if not isrunning:
                 fname = 'run{0}.h5'.format(int(time.time()))
                 print("Saving data to {0}".format(fname))
+                #TODO: get the user to input the run info.
+                #print("I'm going to ask you some questions about the run. Please answer them; it makes processing the data easier later on! Input options are given in square brackets.")
+                #raw_input("Where is the detector: [0] studentlab, [1] targetarea, [2] mine")
                 daq.comments = raw_input("type some comments to include in the run file:\n")
                 #TODO: let user choose which channels to run with.
                 proc = Process(target=daq.run_and_save, 
-                        args=(nevents, fname, [1,2,3,4], 1000, child))
+                        args=(nevents, fname, [1,2,3,4], 1000, child, True))
                 proc.start()
                 #proc.join()
                 isrunning = True
